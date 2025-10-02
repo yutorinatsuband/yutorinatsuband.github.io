@@ -39,6 +39,43 @@
             margin: 0 auto;
         }
         
+        /* Navigation Styles */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--dark);
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            background: var(--primary);
+            color: white;
+        }
+        
+        .nav-btn i {
+            font-size: 1.1rem;
+        }
+        
         .profile-card {
             background: white;
             border-radius: 20px;
@@ -98,6 +135,17 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
                 padding: 30px 20px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
             }
         }
         
@@ -252,6 +300,30 @@
 </head>
 <body>
     <div class="container">
+        <!-- Navigation Section -->
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="projects.html" class="nav-btn">
+                <i class="fas fa-briefcase"></i>
+                <span>Projects</span>
+            </a>
+            <a href="blog.html" class="nav-btn">
+                <i class="fas fa-blog"></i>
+                <span>Blog</span>
+            </a>
+            <a href="contact.html" class="nav-btn">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="resume.html" class="nav-btn">
+                <i class="fas fa-file-alt"></i>
+                <span>Resume</span>
+            </a>
+        </div>
+        
         <div class="profile-card">
             <div class="profile-header">
                 <div class="profile-img-container">
