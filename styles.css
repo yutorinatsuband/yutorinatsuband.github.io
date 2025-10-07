@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'weipeiti';
+  src: url('fonts/weipeiti.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: 'weipeiti', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
