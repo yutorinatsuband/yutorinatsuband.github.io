@@ -3,7 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <title>般若波羅蜜多心經</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* NOTE: the local TTF caused OTS parsing errors in the browser (likely corrupted).
+       To avoid repeated decode errors, we are not loading the local TTF by default here.
+       If you replace `fonts/weipeiti.ttf` with a valid TTF or add a WOFF2 version,
+       you can re-enable @font-face pointing to the working file. */
+
+    /* Page layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #fff;
+      color: #111;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Use reliable CJK fallbacks to avoid requesting a broken font file */
+    body {
+      font-family: 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans SC', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    /* Vertical Chinese text */
+    p {
+      writing-mode: vertical-rl; /* vertical layout, columns flow right-to-left */
+      text-orientation: upright; /* keep CJK characters upright */
+      white-space: pre-wrap; /* preserve line breaks */
+      font-size: 20px;
+      line-height: 1.6;
+      max-height: 80vh;
+      overflow: auto; /* allow scrolling if content overflows */
+      padding: 12px 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    /* Make scrollbar less obtrusive */
+    p::-webkit-scrollbar { width: 10px; }
+    p::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 8px; }
+  </style>
 </head>
 <body>
   <p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。
@@ -34,4 +78,24 @@
 
 揭諦揭諦，波羅揭諦，波羅僧揭諦，菩提薩婆訶。</p>
 </body>
+<script>
+  // Instead of attempting to decode the current local TTF (which produced OTS errors),
+  // do a lightweight HEAD check so you can see whether the font file is being served.
+  (function(){
+    const urls = ['/fonts/weipeiti.ttf', '../fonts/weipeiti.ttf'];
+    urls.forEach(u => {
+      fetch(u, { method: 'HEAD' }).then(res => {
+        if (res.ok) {
+          console.log('Font file reachable at', u, 'status', res.status);
+        } else {
+          console.warn('Font file NOT reachable at', u, 'status', res.status, '- check path or server');
+        }
+      }).catch(err => {
+        console.warn('Error checking font URL', u, err.message);
+      });
+    });
+
+    console.log('\nNext steps:\n - If font HEAD checks return 200, try converting to WOFF2 and adding it to /fonts, then re-enable @font-face.\n - If HEAD returns 404 or returns HTML, fix the path or replace the font file.');
+  })();
+</script>
 </html>
